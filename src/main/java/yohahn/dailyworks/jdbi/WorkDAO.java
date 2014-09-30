@@ -16,18 +16,18 @@ import java.util.List;
 @RegisterMapper(WorkMapper.class)
 public interface WorkDAO {
 
-    @SqlQuery("select id, title from work")
+    @SqlQuery("select id, title, completed from work")
     List<Work> findAll();
 
-    @SqlQuery("select id, title from work where id = :id")
+    @SqlQuery("select id, title, completed from work where id = :id")
     Work findById(@Bind("id") int id);
 
     @GetGeneratedKeys
-    @SqlUpdate("insert into work (id, title) values (NULL, :title)")
-    int create(@Bind("title") String title);
+    @SqlUpdate("insert into work (id, title, completed) values (NULL, :title, :completed)")
+    int create(@Bind("title") String title, @Bind("completed") boolean completed);
 
-    @SqlUpdate("update work set title = :title where id = :id")
-    void update(@Bind("id") int id, @Bind("title") String title);
+    @SqlUpdate("update work set title = :title, compelted = :completed where id = :id")
+    void update(@Bind("id") int id, @Bind("title") String title, @Bind("completed") boolean completed);
 
     @SqlUpdate("delete from work where id = :id")
     void delete(@Bind("id") int id);

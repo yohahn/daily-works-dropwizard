@@ -12,11 +12,13 @@ public class Work {
 
     private String title;
 
+    private boolean completed;
+
     public Work() {
         // Jackson deserialization
     }
 
-    public Work(long id, String title) {
+    public Work(long id, String title, boolean completed) {
         this.id = id;
         this.title = title;
     }
@@ -29,5 +31,10 @@ public class Work {
     @JsonProperty
     public String getTitle() {
         return title;
+    }
+
+    @JsonProperty
+    public boolean isCompleted() {
+        return completed;
     }
 }

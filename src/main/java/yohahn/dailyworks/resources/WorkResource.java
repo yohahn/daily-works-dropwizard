@@ -33,13 +33,15 @@ public class WorkResource {
     }
 
     @POST
+    @Timed
     public Response create(Work work) throws URISyntaxException {
-        int newWorkId = this.workDAO.create(work.getTitle());
+        int newWorkId = this.workDAO.create(work.getTitle(), work.isCompleted());
         return Response.created(new URI(String.valueOf(newWorkId))).build();
     }
 
     @GET
     @Path("/{id}")
+    @Timed
     public Response findById(@PathParam("id") int id) {
         Work work = this.workDAO.findById(id);
         return Response.ok(work).build();
@@ -49,12 +51,13 @@ public class WorkResource {
     @Path("/{id}")
     @Timed
     public Response update(@PathParam("id") int id, Work work) {
-        this.workDAO.update(id, work.getTitle());
+        this.workDAO.update(id, work.getTitle(), work.isCompleted());
         return Response.ok(work).build();
     }
 
     @DELETE
     @Path("/{id}")
+    @Timed
     public Response delete(@PathParam("id") int id) {
         this.workDAO.delete(id);
         return Response.noContent().build();

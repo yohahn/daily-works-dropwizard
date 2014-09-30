@@ -14,6 +14,6 @@ import java.sql.SQLException;
 public class WorkMapper implements ResultSetMapper<Work> {
     @Override
     public Work map(int i, ResultSet rs, StatementContext ctx) throws SQLException {
-        return new Work(rs.getLong("id"), rs.getString("title"));
+        return new Work(rs.getLong("id"), rs.getString("title"), rs.getBoolean("completed"));
     }
 }
