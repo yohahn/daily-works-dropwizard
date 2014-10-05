@@ -21,6 +21,7 @@ public class Work {
     public Work(long id, String title, boolean completed) {
         this.id = id;
         this.title = title;
+        this.completed = completed;
     }
 
     @JsonProperty

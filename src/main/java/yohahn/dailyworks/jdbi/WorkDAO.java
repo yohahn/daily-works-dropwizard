@@ -26,7 +26,7 @@ public interface WorkDAO {
     @SqlUpdate("insert into work (id, title, completed) values (NULL, :title, :completed)")
     int create(@Bind("title") String title, @Bind("completed") boolean completed);
 
-    @SqlUpdate("update work set title = :title, compelted = :completed where id = :id")
+    @SqlUpdate("update work set title = :title, completed = :completed where id = :id")
     void update(@Bind("id") int id, @Bind("title") String title, @Bind("completed") boolean completed);
 
     @SqlUpdate("delete from work where id = :id")
